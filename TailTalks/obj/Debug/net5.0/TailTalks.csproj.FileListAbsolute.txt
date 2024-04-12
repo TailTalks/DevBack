@@ -27,3 +27,5 @@ C:\TailTalks Project\DevBack\TailTalks\obj\Debug\net5.0\TailTalks.dll
 C:\TailTalks Project\DevBack\TailTalks\obj\Debug\net5.0\ref\TailTalks.dll
 C:\TailTalks Project\DevBack\TailTalks\obj\Debug\net5.0\TailTalks.pdb
 C:\TailTalks Project\DevBack\TailTalks\obj\Debug\net5.0\TailTalks.genruntimeconfig.cache
+C:\TailTalks Project\DevBack\TailTalks\obj\Debug\net5.0\TailTalks.csproj.AssemblyReference.cache
+C:\TailTalks Project\DevBack\TailTalks\obj\Debug\net5.0\TailTalks.sourcelink.json
