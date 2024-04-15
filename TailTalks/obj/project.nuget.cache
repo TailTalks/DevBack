@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Qs1iULVUqIxKNiLhu33R/fbh5eABP8ULQW6phEZg1BMJXu/oyJpzATrqoiFw1RDgUwjZPNMHQ7VZVhLt+j+/MA==",
+  "dgSpecHash": "wLDRLxjR42582tcWA12KDbgX+JRaoJFCUhZTQjwQlzBGnlONtHMEVCeWb/DWSovMaK7fDp4IckdCGJ9Lm+KBJg==",
   "success": true,
   "projectFilePath": "C:\\TailTalks Project\\DevBack\\TailTalks\\TailTalks.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\micig\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.1\\microsoft.netcore.platforms.1.1.1.nupkg.sha512",
     "C:\\Users\\micig\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\micig\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\micig\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.6\\microsoft.visualstudio.azure.containers.tools.targets.1.19.6.nupkg.sha512",
     "C:\\Users\\micig\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\micig\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\micig\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
