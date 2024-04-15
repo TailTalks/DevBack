@@ -7,6 +7,9 @@ using TailTalks.Models;
 
 namespace TailTalks.Helper
 {
+    /// <summary>
+    /// Класс контекста
+    /// </summary>
     public class ApiContext : DbContext
     {
         public virtual DbSet<Leads> Leads { get; set; }
