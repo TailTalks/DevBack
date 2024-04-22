@@ -8,11 +8,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TailTalks.Helper;
+using TailTalks.Services;
 
 namespace TailTalks
 {
@@ -20,6 +23,7 @@ namespace TailTalks
     {
         public Startup(IConfiguration configuration)
         {
+            //LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), @"\Nlog.config"));
             Configuration = configuration;
         }
 
@@ -28,6 +32,7 @@ namespace TailTalks
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.ConfigureLoggerService();
 
             services.AddControllers();
             services.AddDbContext<ApiContext>();
