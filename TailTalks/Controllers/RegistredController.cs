@@ -1,28 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using TailTalks.Data;
+using TailTalks.Models;
 
 namespace TailTalks.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RegistredController : ControllerBase
     {
-        // GET: api/<RegistredController>
+        /// <summary>
+        /// Возвращает первый по списку лид
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public Leads Get()
         {
-            return new string[] { "value1", "value2" };
+            return GetData.GetValueLeads();
         }
 
-        // GET api/<RegistredController>/5
+        // GET <RegistredController>/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST api/<RegistredController>
+        // POST <RegistredController>
         [HttpPost]
         [Route("Registration")]
         public IActionResult Registration([FromBody] GetRegistration value)
@@ -30,13 +34,13 @@ namespace TailTalks.Controllers
             return InsertData.RegistredInsert(value);
         }
 
-        // PUT api/<RegistredController>/5
+        // PUT <RegistredController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<RegistredController>/5
+        // DELETE <RegistredController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
