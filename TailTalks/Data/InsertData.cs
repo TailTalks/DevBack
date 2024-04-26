@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
-using System.ComponentModel.DataAnnotations;
 using TailTalks.Helper;
+using TailTalks.Model;
 using TailTalks.Models;
 
 namespace TailTalks.Data
@@ -9,18 +10,32 @@ namespace TailTalks.Data
 
     public class InsertData
     {
-        public static IActionResult RegistredInsert(GetRegistration value)    
+        //private readonly ILoggerManager _logger;
+        private readonly ILogger _logger;
+        public InsertData(ILogger logger)
         {
-            using (var db = new ApiContext())
+            _logger = logger;
+        }
+        public IActionResult RegistredInsert(GetRegistration value)    
+        {
+            try
             {
-                var entity = new Leads();
-                entity.Name = value.Name;
-                entity.Email = value.Email;
-                entity.DateCreated = DateTime.UtcNow;
-                db.Leads.Add(entity);
-                db.SaveChanges();
+                using (var db = new ApiContext())
+                {
+                    var entity = new Leads();
+                    entity.Name = value.Name;
+                    entity.Email = value.Email;
+                    entity.DateCreated = DateTime.UtcNow;
+                    db.Leads.Add(entity);
+                    db.SaveChanges();
+                }
+                return new OkResult();
             }
-            return new OkResult();
+            catch (Exception ex)
+            {
+                _logger.LogError("RegistredInsert:" + ex.Message);
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
     }
 }

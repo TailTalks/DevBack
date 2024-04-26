@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
+using System;
 using TailTalks.Data;
+using TailTalks.Model;
 using TailTalks.Models;
 
 namespace TailTalks.Controllers
@@ -9,14 +11,26 @@ namespace TailTalks.Controllers
     [ApiController]
     public class RegistredController : ControllerBase
     {
+        //private readonly ILoggerManager _logger;
+        private readonly ILogger<RegistredController> _logger;
+        private readonly InsertData _insertData;
+        private readonly Request _request;
+        public RegistredController(ILogger<RegistredController> logger)
+        {
+            _logger = logger;
+            _insertData = new InsertData(_logger);
+            _request = new Request(_logger);
+        }
+
         /// <summary>
-        /// Возвращает первый по списку лид
+        /// Тестовый запрос на первую запись в таблице Leads
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public Leads Get()
+        [Route("TestGetLead")]
+        public Leads GetFirstLead()
         {
-            return GetData.GetValueLeads();
+            return _request.GetAnyLead();
         }
 
         // GET <RegistredController>/5
@@ -26,12 +40,24 @@ namespace TailTalks.Controllers
             return "value";
         }
 
-        // POST <RegistredController>
+        /// <summary>
+        /// Запись регистрационных данных
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Registration")]
         public IActionResult Registration([FromBody] GetRegistration value)
         {
-            return InsertData.RegistredInsert(value);
+            try
+            {
+                return _insertData.RegistredInsert(value);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("PostRegistration:" + e.Message);
+                return NotFound();
+            }
         }
 
         // PUT <RegistredController>/5
