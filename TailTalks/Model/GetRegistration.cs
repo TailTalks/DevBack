@@ -1,4 +1,4 @@
-﻿namespace TailTalks.Data
+﻿namespace TailTalks.Model
 {
     public class GetRegistration
     {

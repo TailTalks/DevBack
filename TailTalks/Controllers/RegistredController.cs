@@ -1,47 +1,63 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
+using System;
 using TailTalks.Data;
-using TailTalks.Logging;
+using TailTalks.Model;
+using TailTalks.Models;
 
 namespace TailTalks.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class RegistredController : ControllerBase
     {
-        private readonly ILoggerManager _logger;
-
-        public RegistredController(ILoggerManager logger)
+        //private readonly ILoggerManager _logger;
+        private readonly ILogger<RegistredController> _logger;
+        private readonly InsertData _insertData;
+        private readonly Request _request;
+        public RegistredController(ILogger<RegistredController> logger)
         {
             _logger = logger;
+            _insertData = new InsertData(_logger);
+            _request = new Request(_logger);
         }
 
-        // GET: api/<RegistredController>
+        /// <summary>
+        /// Тестовый запрос на первую запись в таблице Leads
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Route("TestGetLead")]
+        public Leads GetFirstLead()
         {
-            _logger.LogInfo("Here is info message from the controller.");
-            _logger.LogDebug("Here is debug message from the controller.");
-            _logger.LogWarning("Here is warn message from the controller.");
-            _logger.LogError("Here is error message from the controller.");
-
-            return new string[] { "value1", "value2" };
+            return _request.GetAnyLead();
         }
 
         // GET api/<RegistredController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string GetFirstLead(int id)
         {
             return "value";
         }
 
-        // POST api/<RegistredController>
+        /// <summary>
+        /// Запись регистрационных данных
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("Registration")]
         public IActionResult Registration([FromBody] GetRegistration value)
         {
-            return InsertData.RegistredInsert(value);
+            try
+            {
+                return _insertData.RegistredInsert(value);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("PostRegistration:" + e.Message);
+                return NotFound();
+            }
         }
 
         // PUT api/<RegistredController>/5
